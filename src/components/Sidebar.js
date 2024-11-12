@@ -1,28 +1,36 @@
 // src/components/Sidebar.js
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import dashboard from '../assets/dashboard_icon/dashboard.svg';
-import help from '../assets/dashboard_icon/help.svg';
-import investmentreport from '../assets/dashboard_icon/investment-report.svg';
-import logout from '../assets/dashboard_icon/logout.svg';
-import managecows from '../assets/dashboard_icon/manage-cows.svg';
-import settings from '../assets/dashboard_icon/settings.svg';
-import withdrawalfunds from '../assets/dashboard_icon/withdrawal of funds.svg';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import dashboard from "../assets/dashboard_icon/dashboard.svg";
+import help from "../assets/dashboard_icon/help.svg";
+import investmentreport from "../assets/dashboard_icon/investment-report.svg";
+import logout from "../assets/dashboard_icon/logout.svg";
+import managecows from "../assets/dashboard_icon/manage-cows.svg";
+import settings from "../assets/dashboard_icon/settings.svg";
+import withdrawalfunds from "../assets/dashboard_icon/withdrawal of funds.svg";
 
 const Sidebar = () => {
-  const [active, setActive] = React.useState("Dashboard");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { name: "Dashboard", path: "/dashboard", icon: dashboard },
     { name: "Manage Cows", path: "/manage-cows", icon: managecows },
-    { name: "Investment Report", path: "/investment-report", icon: investmentreport },
+    {
+      name: "Investment Report",
+      path: "/investment-report",
+      icon: investmentreport,
+    },
     { name: "Help", path: "/help", icon: help },
-    { name: "Withdrawal of Funds", path: "/withdrawal-of-funds", icon: withdrawalfunds },
+    {
+      name: "Withdrawal of Funds",
+      path: "/withdrawal-of-funds",
+      icon: withdrawalfunds,
+    },
+    { name: "Settings", path: "/settings", icon: settings },
   ];
 
   const handleItemClick = (item) => {
-    setActive(item.name);
     navigate(item.path);
   };
 
@@ -34,10 +42,16 @@ const Sidebar = () => {
             key={item.name}
             onClick={() => handleItemClick(item)}
             className={`flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer ${
-              active === item.name ? "bg-deepblue text-white" : "text-black"
+              location.pathname === item.path
+                ? "bg-deepblue text-white"
+                : "text-black"
             } hover:bg-deepblue hover:text-white`}
           >
-            <img src={item.icon} alt={`${item.name} icon`} className="w-6 h-6" />
+            <img
+              src={item.icon}
+              alt={`${item.name} icon`}
+              className="w-6 h-6"
+            />
             <span>{item.name}</span>
           </div>
         ))}
@@ -59,13 +73,12 @@ const Sidebar = () => {
         </div>
 
         <div
-          onClick={() => {
-            setActive("Settings");
-            navigate("/settings");
-          }}
           className={`flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer ${
-            active === "Settings" ? "bg-deepblue text-white" : "text-black"
+            location.pathname === "/settings"
+              ? "bg-deepblue text-white"
+              : "text-black"
           } hover:bg-deepblue hover:text-white`}
+          onClick={() => navigate("/settings")}
         >
           <img src={settings} alt="Settings icon" className="w-6 h-6" />
           <span>Settings</span>
@@ -73,10 +86,7 @@ const Sidebar = () => {
 
         <div
           className="flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer text-red"
-          onClick={() => {
-            setActive("Log out");
-            navigate("/login");
-          }}
+          onClick={() => navigate("/login")}
         >
           <img src={logout} alt="Logout icon" className="w-6 h-6" />
           <span>Log out</span>
