@@ -33,11 +33,15 @@ const Sidebar = () => {
           <div
             key={item.name}
             onClick={() => handleItemClick(item)}
-            className={`flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer ${
+            className={`group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer ${
               active === item.name ? "bg-deepblue text-white" : "text-black"
             } hover:bg-deepblue hover:text-white`}
           >
-            <img src={item.icon} alt={`${item.name} icon`} className="w-6 h-6" />
+            <img
+              src={item.icon}
+              alt={`${item.name} icon`}
+              className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
+            />
             <span>{item.name}</span>
           </div>
         ))}
@@ -63,22 +67,22 @@ const Sidebar = () => {
             setActive("Settings");
             navigate("/settings");
           }}
-          className={`flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer ${
+          className={`group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer ${
             active === "Settings" ? "bg-deepblue text-white" : "text-black"
           } hover:bg-deepblue hover:text-white`}
         >
-          <img src={settings} alt="Settings icon" className="w-6 h-6" />
+          <img src={settings} alt="Settings icon" className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100" />
           <span>Settings</span>
         </div>
 
         <div
-          className="flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer text-red"
+          className="group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer text-red"
           onClick={() => {
             setActive("Log out");
             navigate("/login");
           }}
         >
-          <img src={logout} alt="Logout icon" className="w-6 h-6" />
+          <img src={logout} alt="Logout icon" className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100" />
           <span>Log out</span>
         </div>
       </div>

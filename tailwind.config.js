@@ -12,6 +12,7 @@ module.exports = {
       'red' : '#B01212',
       'light-gray' : '#878787',
       'bone-white' : '#F5F5FF',
+      'gray' : '#D9D9D9',
     },
     extend: {
       fontFamily: {

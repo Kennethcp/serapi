@@ -13,14 +13,14 @@ const InvestmentReport = () => {
           <div className="bg-white bg-opacity-50 rounded-lg shadow-md py-2 px-4 w-96">
             <h2 className="text-lg font-semibold py-2">Total Investment</h2>
             <p className="text-3xl font-bold ">Rp 90.000.000,00</p>
-            <p className=" text-right">Detail Report</p>
+            <p className=" text-right text-light-gray font-bold underline cursor-pointer">Detail Report</p>
           </div>
 
           {/* Current Revenue Section */}
           <div className="bg-white bg-opacity-50 rounded-lg shadow-md p-2 px-4">
             <h2 className="text-lg font-semibold py-2">Current Revenue</h2>
             <p className="text-3xl font-bold px-12">Rp 5000.000,00</p>
-            <p className="text-right ml-4">Detail Report</p>
+            <p className="text-right ml-4 text-light-gray font-bold font-jakarta underline cursor-pointer">Detail Report</p>
           </div>
           <img src={costProfit} alt="Profit vs Cost Graph" className="w-80" />
         </div>
