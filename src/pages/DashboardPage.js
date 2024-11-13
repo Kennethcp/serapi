@@ -17,9 +17,9 @@ const DashboardPage = () => {
         <div className="flex-1 ml-80 p-8 space-y-6 mt-16">
           
           {/* Return Card - Full Width */}
-          <div className="bg-white py-8 px-6 rounded-xl">
-            <h2 className="text-xl font-semibold font-sans">Return</h2>
-            <p className="text-4xl font-medium font-sans">Rp 1,000,000</p>
+          <div className="bg-white px-6 rounded-xl">
+            <h2 className="text-2xl font-semibold font-sans py-6">Return</h2>
+            <p className="text-[50px] font-medium font-sans pb-9">Rp 1,000,000</p>
           </div>
 
           {/* Second Row: Revenues, Growth, and Top Year/Top Month Columns */}
@@ -27,10 +27,10 @@ const DashboardPage = () => {
             
            {/* Revenues Card */}
             <div className="bg-white p-6 rounded-xl flex-1 h-96 flex flex-col">
-              <h2 className="text-lg font-semibold font-sans">Revenues</h2>
-              <div className='flex'>
-                <p className="text-7xl font-medium py-4 font-sans">15%</p>
-                <img src={greenArrow}></img>
+              <h2 className="text-2xl font-semibold font-sans">Revenues</h2>
+              <div className='flex items-center'>
+                <p className="text-[80px] font-medium py-4 font-sans">15%</p>
+                <img src={greenArrow} className='h-12'></img>
               </div>
               
               <p className="py-4">Increase compared to last week</p>

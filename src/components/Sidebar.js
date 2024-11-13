@@ -88,7 +88,11 @@ const Sidebar = () => {
         </div>
 
         <div
-          className="group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer text-red hover:text-red-700"
+          className={`group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer ${
+            location.pathname === "/login"
+              ? "bg-red text-white"
+              : "text-black"
+          } hover:bg-red hover:text-white`}
           onClick={() => navigate("/login")}
         >
           <img
