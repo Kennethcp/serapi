@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import LandingPage from './components/LandingPage';
-import LoginPage from './components/LoginPage';
-import CreateAccountPage from './components/CreateAccountPage';
-import CowRegistrationPage from './components/CowRegistrationPage';
-import HomeNoSapiPage from './components/HomeNoSapiPage';
-import TermsConditionsPage from './components/TermsConditionsPage';
-import DashboardPage from './components/DashboardPage';
-import HelpPage from './components/HelpPage';
-import WithdrawalOfFundsPage from './components/WithdrawalofFunds';
-import ManageCowsPage from './components/ManageCowsPage';
-import InvestmentReport from './components/InvestmentReportPage';
-import SuccessPage from './components/SuccessRegistrationPage';
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import CreateAccountPage from './pages/CreateAccountPage';
+import CowRegistrationPage from './pages/CowRegistrationPage';
+import HomeNoSapiPage from './pages/HomeNoSapiPage';
+import TermsConditionsPage from './pages/TermsConditionsPage';
+import DashboardPage from './pages/DashboardPage';
+import HelpPage from './pages/HelpPage';
+import WithdrawalOfFundsPage from './pages/WithdrawalofFunds';
+import ManageCowsPage from './pages/ManageCowsPage';
+import InvestmentReport from './pages/InvestmentReportPage';
+import SuccessPage from './pages/SuccessRegistrationPage';
 
 function Layout({ children, isAuthenticated, onLogout }) {
   const location = useLocation();
@@ -26,47 +26,72 @@ function Layout({ children, isAuthenticated, onLogout }) {
 }
 
 function App() {
-  const [email, setEmail] = useState(localStorage.getItem("userEmail") || "");
-  const [isAuthenticated, setIsAuthenticated] = useState(() => JSON.parse(localStorage.getItem(`${email}_isAuthenticated`)) || false);
-  const [hasCows, setHasCows] = useState(() => JSON.parse(localStorage.getItem(`${email}_hasCows`)) || false);
-  const [acceptedTerms, setAcceptedTerms] = useState(() => JSON.parse(localStorage.getItem(`${email}_acceptedTerms`)) || false);
-  const [registrationComplete, setRegistrationComplete] = useState(() => JSON.parse(localStorage.getItem(`${email}_registrationComplete`)) || false);
-
+  const [currentUser, setCurrentUser] = useState(null);
+  
   useEffect(() => {
+    const email = localStorage.getItem("userEmail");
     if (email) {
-      localStorage.setItem("userEmail", email);
-      localStorage.setItem(`${email}_isAuthenticated`, JSON.stringify(isAuthenticated));
-      localStorage.setItem(`${email}_hasCows`, JSON.stringify(hasCows));
-      localStorage.setItem(`${email}_acceptedTerms`, JSON.stringify(acceptedTerms));
-      localStorage.setItem(`${email}_registrationComplete`, JSON.stringify(registrationComplete));
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find((u) => u.email === email);
+      if (user) setCurrentUser(user);
     }
-  }, [email, isAuthenticated, hasCows, acceptedTerms, registrationComplete]);
+  }, []);
+
+  const saveUserData = (userData) => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map((user) =>
+      user.email === userData.email ? { ...user, ...userData } : user
+    );
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+  };
 
   const handleLogin = (email) => {
-    setEmail(email);
-    setIsAuthenticated(true);
-  };
-  
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setHasCows(false);
-    setAcceptedTerms(false);
-    setRegistrationComplete(false);
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem(`${email}_isAuthenticated`);
-    localStorage.removeItem(`${email}_hasCows`);
-    localStorage.removeItem(`${email}_acceptedTerms`);
-    localStorage.removeItem(`${email}_registrationComplete`);
-    setEmail("");
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find((u) => u.email === email) || { email, isAuthenticated: true, hasCows: false, acceptedTerms: false, registrationComplete: false };
+    setCurrentUser(user);
+    localStorage.setItem("userEmail", email);
+
+    if (!users.find((u) => u.email === email)) {
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+    } else {
+      saveUserData({ ...user, isAuthenticated: true });
+    }
   };
 
-  const handleRegisterCows = () => setHasCows(true);
-  const handleAcceptTerms = () => setAcceptedTerms(true);
-  const handleCompleteRegistration = () => setRegistrationComplete(true);
+  const handleLogout = () => {
+    if (currentUser) saveUserData({ ...currentUser, isAuthenticated: false });
+    setCurrentUser(null);
+    localStorage.removeItem("userEmail");
+  };
+
+  const handleRegisterCows = () => {
+    const updatedUser = { ...currentUser, hasCows: true };
+    setCurrentUser(updatedUser);
+    saveUserData(updatedUser);
+  };
+
+  const handleAcceptTerms = () => {
+    const updatedUser = { ...currentUser, acceptedTerms: true };
+    setCurrentUser(updatedUser);
+    saveUserData(updatedUser);
+  };
+
+  const handleDisagreeTerms = () => {
+    const updatedUser = { ...currentUser, acceptedTerms: false };
+    setCurrentUser(updatedUser);
+    saveUserData(updatedUser);
+  };
+
+  const handleCompleteRegistration = () => {
+    const updatedUser = { ...currentUser, registrationComplete: true };
+    setCurrentUser(updatedUser);
+    saveUserData(updatedUser);
+  };
 
   return (
     <Router>
-      <Layout isAuthenticated={isAuthenticated} onLogout={handleLogout}>
+      <Layout isAuthenticated={currentUser?.isAuthenticated} onLogout={handleLogout}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
@@ -74,41 +99,41 @@ function App() {
           <Route 
             path="/no-cows" 
             element={
-              isAuthenticated ? 
-                (hasCows ? <Navigate to="/dashboard" /> : <HomeNoSapiPage />) 
+              currentUser?.isAuthenticated ? 
+                (currentUser.hasCows ? <Navigate to="/dashboard" /> : <HomeNoSapiPage />) 
               : <Navigate to="/login" />
             } 
           />
           <Route 
             path="/register-cow" 
             element={
-              isAuthenticated ? 
-                (hasCows ? <Navigate to="/dashboard" /> : <CowRegistrationPage onRegisterCows={handleRegisterCows} />) 
+              currentUser?.isAuthenticated ? 
+                (currentUser.hasCows ? <Navigate to="/dashboard" /> : <CowRegistrationPage onRegisterCows={handleRegisterCows} />) 
               : <Navigate to="/login" />
             } 
           />
           <Route 
             path="/terms-conditions" 
             element={
-              isAuthenticated && hasCows && !acceptedTerms ? 
-                <TermsConditionsPage onAcceptTerms={handleAcceptTerms} /> 
+              currentUser?.isAuthenticated && currentUser.hasCows && !currentUser.acceptedTerms ? 
+                <TermsConditionsPage onAcceptTerms={handleAcceptTerms} onDisagreeTerms={handleDisagreeTerms} /> 
               : <Navigate to="/regist-success" />
             } 
           />
           <Route 
             path="/regist-success" 
             element={
-              isAuthenticated && hasCows && acceptedTerms ? 
-                (registrationComplete ? <Navigate to="/dashboard" /> : <SuccessPage onCompleteRegistration={handleCompleteRegistration} />) 
+              currentUser?.isAuthenticated && currentUser.hasCows && currentUser.acceptedTerms ? 
+                (currentUser.registrationComplete ? <Navigate to="/dashboard" /> : <SuccessPage onCompleteRegistration={handleCompleteRegistration} />) 
               : <Navigate to="/login" />
             } 
           />
           <Route 
             path="/dashboard" 
             element={
-              isAuthenticated && hasCows && acceptedTerms && registrationComplete ? 
+              currentUser?.isAuthenticated && currentUser.hasCows && currentUser.acceptedTerms && currentUser.registrationComplete ? 
                 <DashboardPage /> 
-              : <Navigate to={isAuthenticated ? (hasCows ? "/terms-conditions" : "/no-cows") : "/login"} />
+              : <Navigate to={currentUser?.isAuthenticated ? (currentUser.hasCows ? "/terms-conditions" : "/no-cows") : "/login"} />
             } 
           />
           <Route path="/dashboard-dev" element={<DashboardPage />} />

@@ -13,6 +13,10 @@ module.exports = {
       'light-gray' : '#878787',
       'bone-white' : '#F5F5FF',
       'gray' : '#D9D9D9',
+      'dark-orange' : '#734A00',
+      'sky-blue' : '#BADFEE',
+      'orange' : '#FFA500',
+      'mid-gray' : '#7D7D7D'
     },
     extend: {
       fontFamily: {

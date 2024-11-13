@@ -8,6 +8,7 @@ import logout from "../assets/dashboard_icon/logout.svg";
 import managecows from "../assets/dashboard_icon/manage-cows.svg";
 import settings from "../assets/dashboard_icon/settings.svg";
 import withdrawalfunds from "../assets/dashboard_icon/withdrawal of funds.svg";
+import avatar from "../assets/Avatar.svg";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="absolute top-20 left-10 w-64 h-[80vh] bg-white shadow-lg z-10 flex flex-col justify-between p-4 rounded-lg mt-4">
+    <div className=" top-20 left-10 w-64 h-[80vh] bg-white shadow-lg z-10 flex flex-col justify-between p-4 rounded-lg mt-4 fixed">
       <div>
         {menuItems.map((item) => (
           <div
@@ -55,13 +56,12 @@ const Sidebar = () => {
       <div>
         <div className="flex items-center gap-4 my-4">
           <img
-            src="https://via.placeholder.com/40"
-            alt="User"
+            src={avatar}
             className="w-10 h-10 rounded-full"
           />
           <div>
             <div className="text-gray-700 font-semibold">User</div>
-            <div className="text-sm text-gray-500 bg-blue-100 px-2 py-1 rounded-full inline-block">
+            <div className="text-sm text-gray-500 bg-sky-blue px-2 py-1 rounded-full inline-block">
               Investor
             </div>
           </div>
