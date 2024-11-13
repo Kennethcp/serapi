@@ -1,17 +1,17 @@
 // src/components/Sidebar.js
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import dashboard from '../assets/dashboard_icon/dashboard.svg';
-import help from '../assets/dashboard_icon/help.svg';
-import investmentreport from '../assets/dashboard_icon/investment-report.svg';
-import logout from '../assets/dashboard_icon/logout.svg';
-import managecows from '../assets/dashboard_icon/manage-cows.svg';
-import settings from '../assets/dashboard_icon/settings.svg';
-import withdrawalfunds from '../assets/dashboard_icon/withdrawal of funds.svg';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import dashboard from "../assets/dashboard_icon/dashboard.svg";
+import help from "../assets/dashboard_icon/help.svg";
+import investmentreport from "../assets/dashboard_icon/investment-report.svg";
+import logout from "../assets/dashboard_icon/logout.svg";
+import managecows from "../assets/dashboard_icon/manage-cows.svg";
+import settings from "../assets/dashboard_icon/settings.svg";
+import withdrawalfunds from "../assets/dashboard_icon/withdrawal of funds.svg";
 
 const Sidebar = () => {
-  const [active, setActive] = React.useState("Dashboard");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { name: "Dashboard", path: "/dashboard", icon: dashboard },
@@ -22,7 +22,6 @@ const Sidebar = () => {
   ];
 
   const handleItemClick = (item) => {
-    setActive(item.name);
     navigate(item.path);
   };
 
@@ -33,14 +32,20 @@ const Sidebar = () => {
           <div
             key={item.name}
             onClick={() => handleItemClick(item)}
-            className={`group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer ${
-              active === item.name ? "bg-deepblue text-white" : "text-black"
+            className={`group flex items-center gap-4 p-2 my-2 rounded-lg cursor-pointer ${
+              location.pathname === item.path
+                ? "bg-deepblue text-white"
+                : "text-black"
             } hover:bg-deepblue hover:text-white`}
           >
             <img
               src={item.icon}
               alt={`${item.name} icon`}
-              className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
+              className={`w-6 h-6 ${
+                location.pathname === item.path
+                  ? "invert brightness-0 contrast-100"
+                  : ""
+              } group-hover:invert group-hover:brightness-0 group-hover:contrast-100`}
             />
             <span>{item.name}</span>
           </div>
@@ -63,26 +68,34 @@ const Sidebar = () => {
         </div>
 
         <div
-          onClick={() => {
-            setActive("Settings");
-            navigate("/settings");
-          }}
           className={`group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer ${
-            active === "Settings" ? "bg-deepblue text-white" : "text-black"
+            location.pathname === "/settings"
+              ? "bg-deepblue text-white"
+              : "text-black"
           } hover:bg-deepblue hover:text-white`}
+          onClick={() => navigate("/settings")}
         >
-          <img src={settings} alt="Settings icon" className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100" />
+          <img
+            src={settings}
+            alt="Settings icon"
+            className={`w-6 h-6 ${
+              location.pathname === "/settings"
+                ? "invert brightness-0 contrast-100"
+                : ""
+            } group-hover:invert group-hover:brightness-0 group-hover:contrast-100`}
+          />
           <span>Settings</span>
         </div>
 
         <div
-          className="group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer text-red"
-          onClick={() => {
-            setActive("Log out");
-            navigate("/login");
-          }}
+          className="group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer text-red hover:text-red-700"
+          onClick={() => navigate("/login")}
         >
-          <img src={logout} alt="Logout icon" className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100" />
+          <img
+            src={logout}
+            alt="Logout icon"
+            className="w-6 h-6 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
+          />
           <span>Log out</span>
         </div>
       </div>
