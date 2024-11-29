@@ -29,6 +29,12 @@ function LoginPage({ onLogin }) {
     setShowPassword(!showPassword);
   };
 
+  const pdfUrl = "https://drive.google.com/file/d/1FFGqGx5bvbWFQ6qQCs10R5CBxqL5YQHs/view?usp=sharing"; // Ganti dengan URL file PDF Anda
+
+  const openPdf = () => {
+    window.open(pdfUrl, '_blank'); // Membuka link di tab baru
+  };
+
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
@@ -74,6 +80,12 @@ function LoginPage({ onLogin }) {
           or <Link to="/create-account" className="text-light-gray">Create Account</Link>
         </p>
       </div>
+      <button
+        onClick={openPdf}
+        className="px-10 py-5 bg-deepblue text-white font-bold rounded-lg mt-8 font-jakarta text-3xl"
+      >
+        Guidebook Website 
+      </button>
     </div>
   );
 }

@@ -17,7 +17,7 @@ const LandingPage = () => {
       <Navbar/>
       {/* Main content */}
       <div className="flex flex-col items-center justify-center flex-grow">
-        <div className="bg-white bg-opacity-50 shadow-md rounded-lg p-8 mt-24 w-11/12 max-w-6xl">
+        <div className="bg-white bg-opacity-50 shadow-md rounded-lg p-8 mt-24 w-11/12 max-w-full">
           <p className="text-center text-black text-lg font-jakarta">
             <strong>Serapi.co</strong> is a cow investment platform for the Indonesian people.{" "}
             <strong>Serapi.co</strong> will overcome the problem of cow's milk, the majority of
@@ -55,7 +55,7 @@ const LandingPage = () => {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-8 justify-center">
             {/* Row 2 - Cards 4, 5 */}
             <div className="items-center flex flex-col">
               <div className="bg-deepblue text-white rounded-lg w-72 h-[214px] shadow-lg flex justify-center items-center">
