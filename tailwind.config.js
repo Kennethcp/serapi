@@ -18,7 +18,10 @@ module.exports = {
       'orange' : '#FFA500',
       'mid-gray' : '#7D7D7D',
       'green' : '#25CD25',
-      'darkgray' : '#585450'
+      'darkgray' : '#585450',
+      'ijo' : '#25CD25',
+      'purple' : '#7232BD',
+      'abu': '#D6D6D6'
     },
     extend: {
       fontFamily: {

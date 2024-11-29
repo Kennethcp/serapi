@@ -18,6 +18,8 @@ import Settings from './pages/settings';
 import ManageCowsDetailed from './pages/manageCowDetailed';
 import UserPageNoCow from './pages/userPageNoCow';
 import Home from './pages/Home';
+import Gallery from './pages/Gallery';
+import ContactUs from './pages/ContactUs';
 
 function Layout({ children, isAuthenticated, onLogout }) {
   const location = useLocation();
@@ -152,6 +154,8 @@ function App() {
           <Route path='/dashboardnav' element={<DashboardPage />} />
           <Route path="/userpagenocow" element={<UserPageNoCow />} />
           <Route path="/home" element={<Home />} />
+          <Route path='/gallery' element={<Gallery />} />
+          <Route path='/contactus' element={<ContactUs />} />
 
         </Routes>
       </Layout>
