@@ -3,12 +3,13 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import dashboard from "../assets/dashboard_icon/dashboard.svg";
 import help from "../assets/dashboard_icon/help.svg";
-import investmentreport from "../assets/dashboard_icon/investment-report.svg";
+// import investmentreport from "../assets/dashboard_icon/investment-report.svg";
 import logout from "../assets/dashboard_icon/logout.svg";
 import managecows from "../assets/dashboard_icon/manage-cows.svg";
 import settings from "../assets/dashboard_icon/settings.svg";
 import withdrawalfunds from "../assets/dashboard_icon/withdrawal of funds.svg";
 import avatar from "../assets/Avatar.svg";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Sidebar = () => {
   const menuItems = [
     { name: "Dashboard", path: "/dashboard", icon: dashboard },
     { name: "Manage Cows", path: "/manage-cows", icon: managecows },
-    { name: "Investment Report", path: "/investment-report", icon: investmentreport },
+    // { name: "Investment Report", path: "/investment-report", icon: investmentreport },
     { name: "Help", path: "/help", icon: help },
     { name: "Withdrawal of Funds", path: "/withdrawal-of-funds", icon: withdrawalfunds },
   ];
@@ -54,18 +55,18 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <div className="flex items-center gap-4 my-4">
+        <Link to='/userpage' className="flex items-center gap-4 my-4">
           <img
             src={avatar}
             className="w-10 h-10 rounded-full"
           />
-          <div>
+          <div className="flex flex-col">
             <div className="text-gray-700 font-semibold">User</div>
-            <div className="text-sm text-gray-500 bg-sky-blue px-2 py-1 rounded-full inline-block">
-              Investor
-            </div>
+              <div className="text-sm text-gray-500 bg-sky-blue px-2 py-1 rounded-full inline-block">
+                Investor
+              </div>
           </div>
-        </div>
+        </Link>
 
         <div
           className={`group flex items-center gap-4 p-2 my-2 rounded-3xl cursor-pointer ${

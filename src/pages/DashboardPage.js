@@ -11,7 +11,7 @@ const DashboardPage = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex min-h-screen" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="flex h-screen" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         
         {/* Main Content Wrapper */}
         <div className="flex-1 ml-80 p-8 space-y-6 mt-16">
@@ -44,7 +44,7 @@ const DashboardPage = () => {
             </div>  
 
             {/* Growth Chart Card */}
-            <img src={growth} className='w-3/6'></img>
+            <img src={growth} className='w-3/6 h-96'></img>
 
             {/* Column with Top Year and Top Month Cards */}
             <div className="flex flex-col space-y-6 flex-1">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import backgroundImage from '../assets/background-image.png';
+import backgroundImage from '../assets/background-image.svg';
 import hide from '../assets/hide-password.svg';
 import show from '../assets/show-password.svg';
 
@@ -66,7 +66,7 @@ function LoginPage({ onLogin }) {
             </button>
           </div>
           <div className="text-right">
-            <Link to="/forgot-password" className="text-light-gray text-sm font-medium font-jakarta">Forgot Password?</Link>
+            <div className="text-light-gray text-sm font-medium font-jakarta hover:cursor-pointer">Forgot Password?</div>
           </div>
           <button type="submit" className="w-full bg-deepblue text-white py-2 rounded-md">Login</button>
         </form>

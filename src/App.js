@@ -11,8 +11,13 @@ import DashboardPage from './pages/DashboardPage';
 import HelpPage from './pages/HelpPage';
 import WithdrawalOfFundsPage from './pages/WithdrawalofFunds';
 import ManageCowsPage from './pages/ManageCowsPage';
-import InvestmentReport from './pages/InvestmentReportPage';
+// import InvestmentReport from './pages/InvestmentReportPage';
 import SuccessPage from './pages/SuccessRegistrationPage';
+import UserPage from './pages/UserPage';
+import Settings from './pages/settings';
+import ManageCowsDetailed from './pages/manageCowDetailed';
+import UserPageNoCow from './pages/userPageNoCow';
+import Home from './pages/Home';
 
 function Layout({ children, isAuthenticated, onLogout }) {
   const location = useLocation();
@@ -140,7 +145,14 @@ function App() {
           <Route path="/help" element={<HelpPage />} />
           <Route path="/withdrawal-of-funds" element={<WithdrawalOfFundsPage />} />
           <Route path='/manage-cows' element={<ManageCowsPage />} />
-          <Route path='/investment-report' element={<InvestmentReport />} />
+          {/* <Route path='/investment-report' element={<InvestmentReport />} /> */}
+          <Route path='/userpage' element={<UserPage />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/managecowdetailed' element={<ManageCowsDetailed />} />
+          <Route path='/dashboardnav' element={<DashboardPage />} />
+          <Route path="/userpagenocow" element={<UserPageNoCow />} />
+          <Route path="/home" element={<Home />} />
+
         </Routes>
       </Layout>
     </Router>

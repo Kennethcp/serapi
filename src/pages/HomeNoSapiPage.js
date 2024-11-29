@@ -2,6 +2,7 @@ import React from 'react';
 import backgroundImage from '../assets/background-sapi.png';
 import { useNavigate } from 'react-router-dom';
 import avatar from '../assets/Avatar.svg';
+import { Link } from 'react-router-dom';
 
 function HomeNoSapiPage() {
   const navigate = useNavigate();
@@ -18,13 +19,13 @@ function HomeNoSapiPage() {
           Investasi Sapi?
         </button>
       </div>
-      <div className="absolute top-32 right-8 flex w-44 items-center space-x-2 bg-white bg-opacity-90 p-2 rounded-md shadow">
-        <img src={avatar} alt="User Avatar" className="w-10 h-10 rounded-xl" />
+      <Link className="absolute top-32 right-8 flex w-44 items-center space-x-2 bg-white bg-opacity-90 p-2 rounded-md shadow" to='/userpagenocow'>
+        <img src={avatar} alt="User Avatar" className="w-12 h-12 rounded-xl" />
         <div>
           <p className="font-semibold text-gray-800">User</p>
           <p className="text-sm bg-sky-blue  rounded-full px-1">Investor</p>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

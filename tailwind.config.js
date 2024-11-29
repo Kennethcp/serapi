@@ -16,7 +16,9 @@ module.exports = {
       'dark-orange' : '#734A00',
       'sky-blue' : '#BADFEE',
       'orange' : '#FFA500',
-      'mid-gray' : '#7D7D7D'
+      'mid-gray' : '#7D7D7D',
+      'green' : '#25CD25',
+      'darkgray' : '#585450'
     },
     extend: {
       fontFamily: {

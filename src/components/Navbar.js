@@ -1,29 +1,50 @@
-// Navbar.js
-import React from 'react';
-import piaraaLogo from '../assets/logo-piaraa.svg';
-import sweetSundaeLogo from '../assets/sweetsundae-logo.png';
-import indonesiaFlag from '../assets/Flag_of_Indonesia.svg';
+import React from "react";
+import { useLocation } from "react-router-dom";
+import piaraaLogo from "../assets/logo-piaraa.svg";
+import indonesiaFlag from "../assets/Flag_of_Indonesia.svg";
 
-const Navbar = ({ transparent }) => {
+const Navbar = () => {
+  const location = useLocation();
+
+  // Rute halaman tertentu untuk konfigurasi menu
+  const currentPath = location.pathname;
+
+  // Konfigurasi navigasi berdasarkan halaman
+  const navLinks = {
+    common: [
+      { name: "HOME", path: "/" },
+      { name: "LOGIN", path: "/login" },
+    ],
+    otherPages: [
+      { name: "HOME", path: "/home" },
+      { name: "INVESTMENT", path: "/dashboardnav" },
+      { name: "GALLERY", path: "/gallery" },
+      { name: "CONTACT US", path: "/contact-us" },
+    ],
+  };
+
+  // Tentukan menu yang akan dirender
+  const linksToRender =
+    currentPath === "/" || currentPath === "/login" || currentPath === "/create-account"
+      ? navLinks.common
+      : navLinks.otherPages;
+
   return (
-    <nav
-      className={`w-full flex justify-between items-center px-2 py-2 overflow-hidden fixed ${
-        transparent ? 'bg-transparent' : 'bg-deepblue'
-      }`}
-    >
+    <nav className="w-full flex justify-between items-center px-2 py-2 z-50 bg-deepblue fixed">
       <div className="flex items-center space-x-5 px-8 ml-10">
-        <img src={sweetSundaeLogo} alt="Sweet Sundae Logo" className="w-16 h-16" />
         <img src={piaraaLogo} alt="Piaraa Logo" className="w-16 h-16" />
       </div>
       <ul className="hidden md:flex md:space-x-10 text-white font-bold text-sm mr-36">
-        <li><a href="#home" className="hover:text-gray-300">HOME</a></li>
-        <li><a href="#products" className="hover:text-gray-300">PRODUCT</a></li>
-        <li><a href="#shop" className="hover:text-gray-300">OUR SHOP</a></li>
-        <li><a href="#gallery" className="hover:text-gray-300">GALLERY</a></li>
-        <li><a href="#video" className="hover:text-gray-300">VIDEO</a></li>
-        <li><a href="#articles" className="hover:text-gray-300">ARTICLES</a></li>
-        <li><a href="#contact" className="hover:text-gray-300">CONTACT US</a></li>
-        <li><img src={indonesiaFlag} className="h-4" alt="Indonesia Flag" /></li>
+        {linksToRender.map((link) => (
+          <li key={link.name}>
+            <a href={link.path} className="hover:text-gray-300">
+              {link.name}
+            </a>
+          </li>
+        ))}
+        <li>
+          <img src={indonesiaFlag} className="h-4" alt="Indonesia Flag" />
+        </li>
       </ul>
       <div className="md:hidden">
         <button className="text-white text-sm">☰</button>
