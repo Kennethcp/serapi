@@ -32,8 +32,8 @@ const ManageCowsPage = () => {
       >
 
         {/* Table */}
-        <div className="bg-white rounded-lg shadow-md p-44 bg-opacity-50 mx-auto my-auto mt-24">
-          <table className="w-full border-collapse  text-left">
+        <div className="bg-white rounded-lg shadow-md p-40 bg-opacity-50 mx-auto my-auto mt-24 ml-80">
+          <table className="w-full border-collapse text-left">
             <thead className="bg-deepblue text-white font-bold">
               <tr>
                 <th className="p-2 border-4 border-darkgray border-x-0">Cow ID</th>
