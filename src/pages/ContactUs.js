@@ -22,7 +22,7 @@ const ContactUs = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-6 space-y-4 mt-8">
+        <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-6 space-y-4">
           <input
             type="text"
             placeholder="Name"
