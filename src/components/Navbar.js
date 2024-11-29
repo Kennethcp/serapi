@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import piaraaLogo from "../assets/logo-piaraa.svg";
-import indonesiaFlag from "../assets/Flag_of_Indonesia.svg";
+import Flag from "../assets/UK_FLAG.svg";
 
 const Navbar = () => {
   const location = useLocation();
@@ -34,16 +34,23 @@ const Navbar = () => {
       <div className="flex items-center space-x-5 px-8 ml-10">
         <img src={piaraaLogo} alt="Piaraa Logo" className="w-16 h-16" />
       </div>
-      <ul className="hidden md:flex md:space-x-10 text-white font-bold text-sm mr-36">
+      <ul className="hidden md:flex md:space-x-10 text-white font-extrabold text-xl mr-36 items-center">
         {linksToRender.map((link) => (
           <li key={link.name}>
-            <a href={link.path} className="hover:text-gray-300">
+            <a
+              href={link.path}
+              className={`hover:text-gray-300 ${
+                currentPath === link.path
+                  ? "underline underline-offset-4 decoration-2"
+                  : ""
+              }`}
+            >
               {link.name}
             </a>
           </li>
         ))}
         <li>
-          <img src={indonesiaFlag} className="h-4" alt="Indonesia Flag" />
+          <img src={Flag} className="h-5" alt="Flag" />
         </li>
       </ul>
       <div className="md:hidden">

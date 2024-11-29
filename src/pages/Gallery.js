@@ -9,7 +9,7 @@ import gambar6 from "../assets/gallery/gambar6.svg";
 
 const Gallery = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex items-center justify-center relative">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -22,21 +22,21 @@ const Gallery = () => {
       ></div>
 
       {/* Image Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-8 items-center mt-16">
         <img
           src={gambar1}
           alt="Cow Feeding"
-          className="w-96 h-auto rounded-md shadow-lg mt-20"
+          className="w-96 h-auto rounded-md shadow-lg"
         />
         <img
           src={gambar2}
           alt="Barn Interior"
-          className="w-96 h-auto rounded-md shadow-lg mt-20"
+          className="w-96 h-auto rounded-md shadow-lg"
         />
         <img
           src={gambar3}
           alt="Cow in Stable"
-          className="w-96 h-auto rounded-md shadow-lg mt-20"
+          className="w-96 h-auto rounded-md shadow-lg"
         />
         <img
           src={gambar4}
