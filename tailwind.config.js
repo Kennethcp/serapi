@@ -21,7 +21,9 @@ module.exports = {
       'darkgray' : '#585450',
       'ijo' : '#25CD25',
       'purple' : '#7232BD',
-      'abu': '#D6D6D6'
+      'abu': '#D6D6D6',
+      'color1table' : '#F1F1EF',
+      'color2table' : '#BEBEBD'
     },
     extend: {
       fontFamily: {

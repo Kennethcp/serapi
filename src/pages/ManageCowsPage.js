@@ -46,13 +46,13 @@ const ManageCowsPage = () => {
             </thead>
             <tbody>
               {cows.map((cow, index) => (
-                <tr key={index} className="hover:bg-gray-100">
-                  <td className="p-2 border-4 border-darkgray border-x-0 ">{cow.id}</td>
-                  <td className="p-2 border-4 border-darkgray border-x-0 ">{cow.milkingId}</td>
-                  <td className="p-2 border-4 border-darkgray border-x-0 text-center ">{cow.milkAmount}</td>
-                  <td className="p-2 border-4 border-darkgray border-x-0 ">{cow.condition}</td>
-                  <td className="p-2 border-4 border-darkgray border-x-0 ">{cow.cycle}</td>
-                  <td className="p-2 border-4 border-darkgray border-x-0  text-center">
+                <tr key={index} className="hover:bg-gray-100 odd:bg-color1table even:bg-color2table">
+                  <td className="p-1 border-4 border-darkgray border-x-0 ">{cow.id}</td>
+                  <td className="p-1 border-4 border-darkgray border-x-0 ">{cow.milkingId}</td>
+                  <td className="p-1 border-4 border-darkgray border-x-0 text-center ">{cow.milkAmount}</td>
+                  <td className="p-1 border-4 border-darkgray border-x-0 ">{cow.condition}</td>
+                  <td className="p-1 border-4 border-darkgray border-x-0 ">{cow.cycle}</td>
+                  <td className="p-1 border-4 border-darkgray border-x-0  text-center">
                     <button
                       onClick={handleNavigate}
                       className="bg-deepblue text-white px-3 py-1 rounded-lg hover:bg-blue-700"
